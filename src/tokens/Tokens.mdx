@@ -1,0 +1,165 @@
+import { Meta, ColorPalette, ColorItem, Typeset, Unstyled } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Tokens" />
+
+# Токени
+
+Усі значення живуть лише в блоці `@theme` у `src/app/globals.css`. Ця сторінка їх показує, але не задає: якщо щось змінилось у `@theme`, оновлюємо й цю сторінку.
+
+## Кольори
+
+<ColorPalette>
+  <ColorItem
+    title="canvas"
+    subtitle="Фон сторінки"
+    colors={{ "bg-canvas": "var(--color-canvas)" }}
+  />
+  <ColorItem
+    title="surface"
+    subtitle="Картки й поля форми"
+    colors={{ "bg-surface": "var(--color-surface)" }}
+  />
+  <ColorItem
+    title="line"
+    subtitle="Декоративні лінії й рамки карток (не межа поля)"
+    colors={{ "border-line": "var(--color-line)" }}
+  />
+  <ColorItem
+    title="accent"
+    subtitle="Заливки, іконки, великі декоративні елементи. Не для дрібного тексту"
+    colors={{ "bg-accent": "var(--color-accent)" }}
+  />
+  <ColorItem
+    title="accent-ink"
+    subtitle="Акцентний текст на canvas і surface (контраст 4,6:1)"
+    colors={{ "text-accent-ink": "var(--color-accent-ink)" }}
+  />
+  <ColorItem
+    title="ink"
+    subtitle="Основний текст і темні заливки"
+    colors={{ "text-ink": "var(--color-ink)" }}
+  />
+  <ColorItem
+    title="ink-muted"
+    subtitle="Другорядний текст; межа поля й кнопки без заливки"
+    colors={{ "text-ink-muted": "var(--color-ink-muted)" }}
+  />
+  <ColorItem
+    title="danger"
+    subtitle="Текст помилки й межа поля з помилкою"
+    colors={{ "text-danger": "var(--color-danger)" }}
+  />
+</ColorPalette>
+
+### Пари тексту й фону
+
+<Unstyled>
+  <div className="grid gap-4 font-sans text-body">
+    <div className="bg-canvas p-4 border border-line">
+      <p className="text-ink">ink на canvas: основний текст</p>
+      <p className="text-ink-muted">ink-muted на canvas: другорядний текст</p>
+      <p className="text-accent-ink">accent-ink на canvas: акцентний текст</p>
+      <p className="text-danger">danger на canvas: текст помилки</p>
+    </div>
+    <div className="bg-ink p-4">
+      <p className="text-canvas">canvas на ink: текст на темній кнопці</p>
+    </div>
+    <div className="bg-accent p-4">
+      <p className="text-ink">ink на accent: текст на акцентній заливці</p>
+    </div>
+  </div>
+</Unstyled>
+
+## Шрифти
+
+<Typeset
+  fontFamily="var(--font-mono)"
+  fontWeight={700}
+  fontSizes={["var(--text-display)", "var(--text-lead)", "var(--text-body)", "var(--text-caption)"]}
+  sampleText="Martian Mono: Автоматизую рутину"
+/>
+
+<Typeset
+  fontFamily="var(--font-sans)"
+  fontWeight={400}
+  fontSizes={["var(--text-lead)", "var(--text-body)", "var(--text-caption)"]}
+  sampleText="Geologica: Рішення за людьми, рутина за агентами"
+/>
+
+<Typeset
+  fontFamily="var(--font-hand)"
+  fontWeight={700}
+  fontSizes={["var(--text-display)"]}
+  sampleText="Caveat: це головне!"
+/>
+
+### Шкала тексту з висотою рядка, трекінгом і жирністю
+
+Кожен клас `text-*` задає розмір разом із висотою рядка, трекінгом і жирністю з `@theme`.
+
+<Unstyled>
+  <div className="grid gap-6 text-ink">
+    <div>
+      <p className="font-mono text-caption text-ink-muted">text-display · font-mono</p>
+      <p className="font-mono text-display">Автоматизую рутину з AI‑агентами</p>
+    </div>
+    <div>
+      <p className="font-mono text-caption text-ink-muted">text-lead · font-sans</p>
+      <p className="font-sans text-lead">Рішення за людьми, рутина за агентами.</p>
+    </div>
+    <div>
+      <p className="font-mono text-caption text-ink-muted">text-body · font-sans</p>
+      <p className="font-sans text-body">Менше рутини в роботі журналіста.</p>
+    </div>
+    <div>
+      <p className="font-mono text-caption text-ink-muted">text-caption · font-mono, uppercase</p>
+      <p className="font-mono text-caption uppercase">Кейси · Про мене · Контакти</p>
+    </div>
+  </div>
+</Unstyled>
+
+## Радіуси
+
+Кути в макеті прямі, тому обидва радіуси дорівнюють нулю.
+
+<Unstyled>
+  <div className="grid grid-cols-2 gap-6 font-mono text-caption text-ink">
+    <div className="grid gap-2">
+      <div className="rounded-control border-2 border-ink-muted bg-surface p-4">rounded-control</div>
+      <p className="text-ink-muted">Кнопки й поля</p>
+    </div>
+    <div className="grid gap-2">
+      <div className="rounded-card border border-line bg-surface p-8">rounded-card</div>
+      <p className="text-ink-muted">Картки</p>
+    </div>
+  </div>
+</Unstyled>
+
+## Пропорції картинок
+
+<Unstyled>
+  <div className="flex items-start gap-6 font-mono text-caption text-ink-muted">
+    <div className="flex-2">
+      <div className="aspect-cover bg-line" />
+      <p className="pt-2">aspect-cover: обкладинка кейса</p>
+    </div>
+    <div className="flex-1">
+      <div className="aspect-portrait bg-line" />
+      <p className="pt-2">aspect-portrait: портрет у hero</p>
+    </div>
+  </div>
+</Unstyled>
+
+## Відступи
+
+Дозволені лише п’ять кроків. Число в класі множиться на 4px.
+
+<Unstyled>
+  <div className="grid gap-3 font-mono text-caption text-ink">
+    <div className="flex items-center gap-4"><div className="size-2 bg-accent" /><span>2 · 8px · p-2, gap-2</span></div>
+    <div className="flex items-center gap-4"><div className="size-3 bg-accent" /><span>3 · 12px · p-3, gap-3</span></div>
+    <div className="flex items-center gap-4"><div className="size-4 bg-accent" /><span>4 · 16px · p-4, gap-4</span></div>
+    <div className="flex items-center gap-4"><div className="size-6 bg-accent" /><span>6 · 24px · p-6, gap-6</span></div>
+    <div className="flex items-center gap-4"><div className="size-8 bg-accent" /><span>8 · 32px · p-8, gap-8</span></div>
+  </div>
+</Unstyled>

@@ -1,7 +1,72 @@
 @import "tailwindcss";
 
 /*
- * Design tokens go here (in @theme) once the design system is defined.
- * Starter theme from create-next-app (--background/--foreground,
- * dark-mode media query, Geist fonts) was intentionally removed.
+ * Design tokens: the single source of values for the whole project.
+ * Default Tailwind palette, text sizes, radii and fonts are reset, so
+ * classes like text-white, bg-black, text-sm or rounded-lg do nothing.
+ * Use only the tokens below. The Storybook page "Foundations/Tokens"
+ * must be updated whenever this block changes.
  */
+@theme {
+  /* ---------- colors ---------- */
+  --color-*: initial;
+  --color-canvas: #f4f3ef; /* page background */
+  --color-surface: #fbfaf7; /* cards and form fields */
+  --color-line: #e2dfd9; /* decorative lines, card borders (not form fields) */
+  --color-accent: #ff4f1a; /* fills, icons, large decorative marks; NOT small text */
+  --color-accent-ink: #c93a0c; /* accent for text on canvas/surface (4.6:1) */
+  --color-ink: #121212; /* main text, dark fills */
+  --color-ink-muted: #6b6862; /* secondary text, form field and outline borders */
+  --color-danger: #b3123f; /* error text and error field border */
+
+  /* ---------- text sizes (size + line height + tracking + weight) ---------- */
+  --text-*: initial;
+  --text-caption: 0.8125rem; /* 13px */
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.04em;
+  --text-caption--font-weight: 500;
+
+  --text-body: 0.9375rem; /* 15px */
+  --text-body--line-height: 1.4;
+  --text-body--letter-spacing: 0;
+  --text-body--font-weight: 400;
+
+  --text-lead: 1.25rem; /* 20px */
+  --text-lead--line-height: 1.5;
+  --text-lead--letter-spacing: 0;
+  --text-lead--font-weight: 400;
+
+  --text-display: 3.375rem; /* 54px */
+  --text-display--line-height: 1.12;
+  --text-display--letter-spacing: -0.05em;
+  --text-display--font-weight: 700;
+
+  /* ---------- radii: corners are square in the design ---------- */
+  --radius-*: initial;
+  --radius-control: 0; /* buttons, fields */
+  --radius-card: 0; /* cards */
+
+  /* ---------- image proportions ---------- */
+  --aspect-cover: 21 / 8; /* case card cover */
+  --aspect-portrait: 5 / 6; /* hero portrait */
+
+  /* ---------- fonts (values come from next/font, see src/app/fonts.ts) ---------- */
+  --font-*: initial;
+}
+
+@theme inline {
+  --font-sans: var(--font-geologica), system-ui, sans-serif;
+  --font-mono: var(--font-martian-mono), ui-monospace, monospace;
+  --font-hand: var(--font-caveat), cursive;
+}
+
+/*
+ * Spacing: only 8, 12, 16, 24, 32 px, i.e. 2, 3, 4, 6, 8 in classes
+ * (p-2, gap-4, px-6). Default --spacing (4px) stays as the base unit.
+ */
+
+@layer base {
+  body {
+    @apply bg-canvas text-ink font-sans text-body;
+  }
+}
