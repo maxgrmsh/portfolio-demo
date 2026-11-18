@@ -75,7 +75,7 @@ import { Meta, ColorPalette, ColorItem, Typeset, Unstyled } from "@storybook/add
 <Typeset
   fontFamily="var(--font-mono)"
   fontWeight={700}
-  fontSizes={["var(--text-display)", "var(--text-lead)", "var(--text-body)", "var(--text-caption)"]}
+  fontSizes={["var(--text-display)", "var(--text-heading)", "var(--text-lead)", "var(--text-body)", "var(--text-caption)"]}
   sampleText="Martian Mono: Автоматизую рутину"
 />
 
@@ -102,6 +102,10 @@ import { Meta, ColorPalette, ColorItem, Typeset, Unstyled } from "@storybook/add
     <div>
       <p className="font-mono text-caption text-ink-muted">text-display · font-mono</p>
       <p className="font-mono text-display">Автоматизую рутину з AI‑агентами</p>
+    </div>
+    <div>
+      <p className="font-mono text-caption text-ink-muted">text-heading · font-mono (заголовки секцій, заголовок hero на вузькому екрані)</p>
+      <p className="font-mono text-heading">Автоматизую рутину з AI‑агентами</p>
     </div>
     <div>
       <p className="font-mono text-caption text-ink-muted">text-lead · font-sans</p>
@@ -161,5 +165,31 @@ import { Meta, ColorPalette, ColorItem, Typeset, Unstyled } from "@storybook/add
     <div className="flex items-center gap-4"><div className="size-4 bg-accent" /><span>4 · 16px · p-4, gap-4</span></div>
     <div className="flex items-center gap-4"><div className="size-6 bg-accent" /><span>6 · 24px · p-6, gap-6</span></div>
     <div className="flex items-center gap-4"><div className="size-8 bg-accent" /><span>8 · 32px · p-8, gap-8</span></div>
+  </div>
+</Unstyled>
+
+Крім пʼяти кроків є один іменований відступ для великих проміжків між секціями сторінки:
+
+<Unstyled>
+  <div className="flex items-center gap-4 font-mono text-caption text-ink">
+    <div className="h-section w-3 bg-accent" />
+    <span>section · проміжок між секціями · mt-section, pb-section</span>
+  </div>
+</Unstyled>
+
+## Макет сторінки
+
+<Unstyled>
+  <div className="grid gap-6 font-mono text-caption text-ink">
+    <p className="text-ink-muted">max-w-page: ширина контенту сторінки. Поля по боках: px-4.</p>
+    <div className="grid gap-2">
+      <div className="aspect-cover bg-grid border border-line" />
+      <p className="text-ink-muted">bg-grid: декоративна сітка фону з ліній line; крок задає --spacing-grid.</p>
+    </div>
+    <div className="flex items-center gap-3">
+      <span>maxharmash</span>
+      <span className="h-6 w-3 bg-accent motion-safe:animate-blink" />
+      <span className="text-ink-muted">animate-blink: курсор логотипа; вимикається, якщо в системі ввімкнено зменшення руху</span>
+    </div>
   </div>
 </Unstyled>

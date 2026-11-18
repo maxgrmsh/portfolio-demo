@@ -3,8 +3,8 @@ import { fontVariables } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Портфоліо UI-дизайнера",
-  description: "Інтерфейси для невеликих SaaS-продуктів",
+  title: "Максим Гармаш — AI-автоматизація для медіа й команд",
+  description: "Автоматизую рутину медіа й команд з AI-агентами.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
