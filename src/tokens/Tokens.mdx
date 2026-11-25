@@ -82,7 +82,7 @@ import { Meta, ColorPalette, ColorItem, Typeset, Unstyled } from "@storybook/add
 <Typeset
   fontFamily="var(--font-sans)"
   fontWeight={400}
-  fontSizes={["var(--text-lead)", "var(--text-body)", "var(--text-caption)"]}
+  fontSizes={["var(--text-statement)", "var(--text-lead)", "var(--text-body)", "var(--text-caption)"]}
   sampleText="Geologica: Рішення за людьми, рутина за агентами"
 />
 
@@ -106,6 +106,12 @@ import { Meta, ColorPalette, ColorItem, Typeset, Unstyled } from "@storybook/add
     <div>
       <p className="font-mono text-caption text-ink-muted">text-heading · font-mono (заголовки секцій, заголовок hero на вузькому екрані)</p>
       <p className="font-mono text-heading">Автоматизую рутину з AI‑агентами</p>
+    </div>
+    <div>
+      <p className="font-mono text-caption text-ink-muted">text-statement · font-sans (великий абзац-маніфест, плавно 24–40 px від ширини екрана)</p>
+      <p className="font-sans text-statement">
+        Я налаштовую <mark className="bg-accent text-ink box-decoration-clone">агентів для контенту</mark>, а рутина — за агентами.
+      </p>
     </div>
     <div>
       <p className="font-mono text-caption text-ink-muted">text-lead · font-sans</p>

@@ -1,10 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
-import coverBrand from "@/assets/work-cover-brand.jpg";
-import coverDashboard from "@/assets/work-cover-dashboard.jpg";
-import coverPlugin from "@/assets/work-cover-plugin.jpg";
+import portraitWorkbench from "@/assets/portrait-workbench.jpg";
 import { Button } from "@/components/Button/Button";
 import { Navigation } from "@/components/Navigation/Navigation";
-import { WorkCard } from "@/components/WorkCard/WorkCard";
 
 const navItems = [
   { label: "Кейси", href: "#cases" },
@@ -13,29 +11,23 @@ const navItems = [
   { label: "Контакти", href: "#contact" },
 ];
 
-const cases = [
-  {
-    title: "Тренінг ЦЕДЕМ",
-    description: "Менше рутини в роботі журналіста",
-    href: "#cases",
-    cover: coverDashboard,
-    coverAlt: "",
-  },
-  {
-    title: "Система бренду в коді",
-    description: "Тексти й рендер — на агентах",
-    href: "#cases",
-    cover: coverBrand,
-    coverAlt: "",
-  },
-  {
-    title: "Figma-плагін",
-    description: "Український плейсхолдер за клік",
-    href: "#cases",
-    cover: coverPlugin,
-    coverAlt: "",
-  },
-];
+/** Hand-written notes for the numbered theses (placeholders until the service list is final). */
+const handNotes = ["пости, банери, розсилки", "плагіни й скрипти за клік", "воркшопи для редакцій"];
+
+/** Two-digit footnote number: 1 → "01". */
+function footnote(n: number) {
+  return String(n).padStart(2, "0");
+}
+
+/** Key thesis with a highlighter mark and a small footnote-style number. */
+function highlight(text: string, n: number) {
+  return (
+    <>
+      <mark className="bg-accent text-ink box-decoration-clone">{text}</mark>
+      <sup className="font-mono text-caption text-accent-ink">{footnote(n)}</sup>
+    </>
+  );
+}
 
 /** Hand-drawn arrow from the design, pointing up-left at the title. */
 function ScribbleArrow() {
@@ -118,17 +110,60 @@ export default function Home() {
           />
         </section>
 
-        <section id="cases" aria-labelledby="cases-title" className="mt-section flex flex-col gap-4">
-          <h2 id="cases-title" className="font-mono text-caption uppercase text-ink-muted">
-            Кейси
+        <section
+          aria-labelledby="services-title"
+          className="mt-section grid gap-8 md:grid-cols-12 md:gap-6"
+        >
+          <h2
+            id="services-title"
+            className="flex items-center gap-3 font-mono text-caption uppercase text-accent-ink md:col-span-12"
+          >
+            <span className="border border-accent-ink px-2">02</span>
+            Що я роблю
           </h2>
-          <ul className="grid gap-6 md:grid-cols-3">
-            {cases.map((item) => (
-              <li key={item.title}>
-                <WorkCard {...item} />
-              </li>
-            ))}
-          </ul>
+
+          <div className="flex flex-col gap-8 md:col-span-8">
+            {/* Manifesto: muted context, key theses in ink with a highlighter. */}
+            <p className="font-sans text-statement text-ink-muted">
+              Щодня команди витрачають години на те, що можна віддати машині.{" "}
+              <span className="text-ink">
+                Я налаштовую {highlight("агентів для контенту", 1)}, роблю{" "}
+                {highlight("інструменти за один клік", 2)} і вчу{" "}
+                {highlight("редакції працювати з AI", 3)}.
+              </span>{" "}
+              Людям лишається робота, яку може зробити тільки людина.
+            </p>
+
+            {/* Hand-written margin notes for the numbered theses, like notes pinned to a board. */}
+            <ol className="flex flex-wrap gap-x-8 gap-y-2 font-hand text-lead text-accent-ink md:text-heading">
+              {handNotes.map((note, index) => (
+                <li key={note} className={index % 2 ? "rotate-1" : "-rotate-2"}>
+                  {footnote(index + 1)} — {note}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* Photo pinned to the board like a sticker: frame, tape, slight tilt, offset down. */}
+          <div className="relative w-5/6 justify-self-center rotate-2 border border-line bg-surface p-3 md:col-span-4 md:mt-section md:w-full md:justify-self-start">
+            <span
+              aria-hidden="true"
+              className="absolute -top-3 left-1/2 h-6 w-24 -translate-x-1/2 -rotate-3 bg-accent"
+            />
+            <Image
+              src={portraitWorkbench}
+              alt="Людина схилилася над верстаком і креслить олівцем, на стіні позаду приколоті ескізи інтерфейсів"
+              placeholder="blur"
+              sizes="(min-width: 768px) 33vw, 85vw"
+              className="aspect-portrait w-full object-cover"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute -bottom-8 -left-6 -rotate-6 whitespace-nowrap font-hand text-heading text-accent"
+            >
+              це я!
+            </span>
+          </div>
         </section>
       </main>
     </div>

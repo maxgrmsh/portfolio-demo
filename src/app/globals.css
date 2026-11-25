@@ -41,6 +41,11 @@
   --text-lead--letter-spacing: 0;
   --text-lead--font-weight: 400;
 
+  --text-statement: clamp(1.5rem, 1rem + 2.2vw, 2.5rem); /* 24→40px fluid: large Geologica paragraph (manifesto block) */
+  --text-statement--line-height: 1.25;
+  --text-statement--letter-spacing: -0.03em;
+  --text-statement--font-weight: 400;
+
   --text-display: 3.375rem; /* 54px */
   --text-display--line-height: 1.12;
   --text-display--letter-spacing: -0.05em;
