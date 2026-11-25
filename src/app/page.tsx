@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import portraitWorkbench from "@/assets/portrait-workbench.jpg";
+import { ContactForm } from "@/app/_components/ContactForm";
 import { Button } from "@/components/Button/Button";
 import { Navigation } from "@/components/Navigation/Navigation";
 
@@ -163,6 +164,29 @@ export default function Home() {
             >
               це я!
             </span>
+          </div>
+        </section>
+
+        <section
+          id="contact"
+          aria-labelledby="contact-title"
+          className="mt-section grid scroll-mt-8 gap-8 border border-line bg-surface p-6 md:p-8 lg:grid-cols-12 lg:gap-6"
+        >
+          <div className="flex flex-col items-start gap-6 lg:col-span-5">
+            <p className="flex items-center gap-3 font-mono text-caption uppercase text-accent-ink">
+              <span className="border border-accent-ink px-2">03</span>
+              Заявка
+            </p>
+            <h2 id="contact-title" className="font-mono text-heading">
+              Розкажіть про задачу
+            </h2>
+            <p className="font-sans text-lead text-ink-muted">
+              Можна без готового ТЗ: опишіть, який процес з&apos;їдає час і скільки людей у ньому.
+            </p>
+          </div>
+
+          <div className="lg:col-span-6 lg:col-start-7">
+            <ContactForm />
           </div>
         </section>
       </main>

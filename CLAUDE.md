@@ -35,7 +35,7 @@
 Кожен компонент лежить у `src/components/<Назва>/` разом з історією `<Назва>.stories.tsx` (одна історія `Playground` з Controls і сторінка Docs).
 
 - **Button** (`src/components/Button/Button.tsx`, Storybook: `Components/Button`). Пропси: `variant` (`primary` — заливка `accent`, текст `ink`; `secondary` — без заливки, межа `ink-muted`), `size` (`md`, `lg`), `disabled` (через `aria-disabled`, кнопка лишається у фокусі), `disabledReason` (пояснення під кнопкою, звʼязане через `aria-describedby`), `href` (робить кнопку посиланням `next/link`). Hover: заливка `ink`, текст `canvas`. Фокус: контур `ink`.
-- **FormField** (`src/components/FormField/FormField.tsx`, Storybook: `Components/FormField`). Текстове поле з підписом над ним. Пропси: `label`, `type` (`text`, `email`, `tel`, `url`), `defaultValue`, `placeholder`, `error` (межа `danger`, `aria-invalid`), `errorText` (іконка й текст `danger` під полем, звʼязані через `aria-describedby`), `disabled` (атрибут `disabled`, фон і межа `line`), `id`. Межа `ink-muted`, hover і фокус — `ink`. Фон і колір тексту задаються лише в класах станів, щоб не конфліктували.
+- **FormField** (`src/components/FormField/FormField.tsx`, Storybook: `Components/FormField`). Поле форми з підписом над ним, однорядкове (`<input>`) або багаторядкове (`<textarea>`). Пропси: `label`, `multiline` (`<textarea>` для повідомлення, розтягується лише по вертикалі), `rows` (висота `textarea`, за замовчуванням 5), `type` (`text`, `email`, `tel`, `url`; лише однорядкове), `defaultValue`, `placeholder`, `autoComplete`, `hint` (підказка `ink-muted` під полем, звʼязана через `aria-describedby`; поки є помилка, замість неї текст помилки), `error` (межа `danger`, `aria-invalid`), `errorText` (іконка й текст `danger` під полем, звʼязані через `aria-describedby`; перед текстом візуально прихований префікс «Помилка:», клас `sr-only`), `disabled` (атрибут `disabled`, фон і межа `line`), `id` (власний id для посилань зі зведення помилок, текст помилки отримує `<id>-error`, підказка — `<id>-hint`; без нього id створюється автоматично). Межа `ink-muted`, hover і фокус — `ink`. Фон і колір тексту задаються лише в класах станів, щоб не конфліктували.
 - **Navigation** (`src/components/Navigation/Navigation.tsx`, Storybook: `Components/Navigation`). Пункти меню з активним станом. Пропси: `items` (`{ label, href }`, за замовчуванням Роботи, Про мене, Контакти), `activeHref` (активний пункт: текст і лінія `accent-ink`, `aria-current="page"`), `label`. Hover пункту — `accent-ink`, фокус — контур `ink`. Нижче `md` згортається в `Button` «Меню»; список відкривається поверх контенту (`absolute`, фон `surface`), закривається Escape, кліком поза меню або вибором пункту.
 - **WorkCard** (`src/components/WorkCard/WorkCard.tsx`, Storybook: `Components/WorkCard`). Клікабельна картка кейса. Пропси: `title`, `description`, `href`, `cover` (імпорт із `src/assets`, не з `public`), `coverAlt`. Обкладинка `aspect-cover`, кути `rounded-card`. Hover: назва `accent-ink`, рамка обкладинки `ink`. Фокус: контур `ink` навколо всієї картки.
 
@@ -47,6 +47,14 @@
 - Tailwind не повідомляє про невідомий клас, тому після кожної зміни перевіряй, що в коді немає класів, яких немає в `@theme`.
 - Змінився `@theme`: онови `Foundations/Tokens` і перезапусти `npm run dev`.
 - Компоненти й токени переглядаємо тільки в Storybook (`npm run storybook`), тимчасових сторінок на сайті не створюємо.
+
+## Форма заявки
+
+- Блок «Заявка» (`#contact`) на головній, форма — `src/app/_components/ContactForm.tsx` (`useActionState`, поля `FormField`, зведення помилок, пастка для ботів `hp_check`).
+- Серверна функція (Server Action): `src/app/actions/contact.ts`, `submitContact`. Перевіряє поля й пастку, потім надсилає лист через Resend (`resend.emails.send()`, простий текст, `replyTo` — пошта відвідувача). Клієнт Resend створюється всередині функції.
+- Ключ — у змінній `RESEND_API_KEY`, пошта отримувача — у `CONTACT_EMAIL` (з `onboarding@resend.dev` це має бути пошта, на яку зареєстровано Resend). Обидві змінні — у `.env.local` локально і в Environment Variables на Vercel.
+- Будь-який збій (немає змінної, виняток, `error` у відповіді Resend) — повідомлення про збій над формою, введене лишається; помилка йде в `console.error` без ключа.
+- Файли `.env*` не відкриваємо й не читаємо, ключі в код не пишемо. `.env*` є в `.gitignore`.
 
 ## Посилання
 
